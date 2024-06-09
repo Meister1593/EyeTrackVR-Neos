@@ -33,7 +33,7 @@ namespace EyeTrackVRResonite
         private static readonly ModConfigurationKey<float> Beta = new("beta", "Eye Swing Multiplier Y", () => 1.0f);
 
         [AutoRegisterConfigKey]
-        private static readonly ModConfigurationKey<int> OscPort = new("osc_port", "EyeTrackVR OSC port", () => 9000);
+        private static readonly ModConfigurationKey<int> OscPort = new("osc_port", "EyeTrackVR OSC port", () => 9010);
 
         [HarmonyPatch(typeof(InputInterface), MethodType.Constructor)]
         [HarmonyPatch(new[] { typeof(Engine) })]
@@ -72,7 +72,7 @@ namespace EyeTrackVRResonite
 
             public void RegisterInputs(InputInterface inputInterface)
             {
-                _eyes = new Eyes(inputInterface, "EyeTrackVR Eye Tracking");
+                _eyes = new Eyes(inputInterface, "EyeTrackVR Eye Tracking", true);
             }
 
             public void UpdateInputs(float deltaTime)
